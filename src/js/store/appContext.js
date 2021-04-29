@@ -8,7 +8,7 @@ export const Context = React.createContext(null);
 // https://github.com/4GeeksAcademy/react-hello-webapp/blob/master/src/js/layout.jsx#L35
 const injectContext = PassedComponent => {
 	const StoreWrapper = props => {
-		//this will be passed as the contenxt value
+		//this will be passed as the context value
 		const [state, setState] = useState(
 			getState({
 				getStore: () => state.store,
@@ -30,6 +30,7 @@ const injectContext = PassedComponent => {
 			 * state.loadSomeData(); <---- calling this function from the flux.js actions
 			 *
 			 **/
+			state.actions.fetchAgenda();
 		}, []);
 
 		// the initial value for the context its not null anymore, but the current state of this component,
