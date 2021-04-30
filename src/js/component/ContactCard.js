@@ -1,12 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import daniiPhoto from "../../img/m101.jpg";
 
-export const ContactCard = ({ name, address, phone, email }) => {
+// Importing the context
+import { Context } from "../store/appContext";
+
+export const ContactCard = ({ id, name, address, phone, email }) => {
 	const [state, setState] = useState({
 		//initialize state here
+		id: id
 	});
+	// Using the context
+	const { store, actions } = useContext(Context);
+
+	const handleDelete = _ => {
+		actions.deleteContactFromAgenda(state.id);
+	};
 
 	return (
 		<li className="list-group-item">
@@ -16,10 +26,10 @@ export const ContactCard = ({ name, address, phone, email }) => {
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 					<div className=" float-right">
-						<button className="btn">
+						<Link className="btn" to={`contact/edit/${state.id}`}>
 							<i className="fas fa-pencil-alt mr-3" />
-						</button>
-						<button className="btn" onClick={() => props.onDelete()}>
+						</Link>
+						<button className="btn" onClick={handleDelete}>
 							<i className="fas fa-trash-alt" />
 						</button>
 					</div>
@@ -51,6 +61,7 @@ export const ContactCard = ({ name, address, phone, email }) => {
 ContactCard.propTypes = {
 	history: PropTypes.object,
 	onDelete: PropTypes.func,
+	id: PropTypes.string,
 	name: PropTypes.string,
 	address: PropTypes.string,
 	phone: PropTypes.string,

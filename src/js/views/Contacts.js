@@ -11,13 +11,14 @@ export const Contacts = () => {
 	const [state, setState] = useState({
 		showModal: false
 	});
+	// Using the context
 	const { store, actions } = useContext(Context);
 
 	return (
 		<div className="container">
 			<div>
 				<p className="text-right my-3">
-					<Link className="btn btn-success" to="/add">
+					<Link className="btn btn-success" to="/contact/add/null">
 						Add new contact
 					</Link>
 				</p>
@@ -28,6 +29,7 @@ export const Contacts = () => {
 							return (
 								<ContactCard
 									key={element.id}
+									id={element.id}
 									name={element.full_name}
 									address={element.address}
 									phone={element.phone}

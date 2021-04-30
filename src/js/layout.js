@@ -17,8 +17,7 @@ export const Layout = () => {
 						<Route exact path="/index.html" component={Contacts} />
 						<Route exact path="/" component={Contacts} />
 						<Route exact path="/contacts" component={Contacts} />
-						<Route exact path="/add" component={AddContact} />
-						<Route exact path="/edit" component={AddContact} />
+						<Route exact path="/contact/:action/:id" component={AddContact} />
 						<Route render={() => <h1 className="notfound">Not found!</h1>} />
 					</Switch>
 				</div>
