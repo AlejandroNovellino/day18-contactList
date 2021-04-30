@@ -19,9 +19,15 @@ export const AddContact = () => {
 		});
 	};
 
-	const handleClickOfSave = _ => {
+	const handleClickSave = _ => {
 		if (action == "add") {
 			actions.addNewContact(state);
+			setState({
+				full_name: "",
+				email: "",
+				phone: "",
+				address: ""
+			});
 		} else if (action == "edit") {
 			actions.editNewContact(id, state);
 		}
@@ -76,7 +82,7 @@ export const AddContact = () => {
 							onChange={handleChange}
 						/>
 					</div>
-					<button type="button" className="btn btn-primary form-control" onClick={handleClickOfSave}>
+					<button type="button" className="btn btn-primary form-control" onClick={handleClickSave}>
 						save
 					</button>
 					<Link className="mt-3 w-100 text-center" to="/">
